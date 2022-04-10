@@ -6,20 +6,8 @@
   </head>
   <body>
     <h1>Welcome to Ideal Roommate</h1>
-    <table>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Species</th>
-      </tr>
-
-      {% for a in animals %}
-      <tr>
-        <td>{{a[0]}}</td>
-        <td>{{a[1]}}</td>
-        <td>{{a[2]}}</td>
-      </tr>
-      {% endfor %}
-    </table>
+    <a href="{{ url_for('auth.login') }}">Login</a>
+    <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+    
   </body>
 </html>

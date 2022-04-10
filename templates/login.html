@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ideal Roommate</title>
+  </head>
+  <body>
+    <h1>Login to Ideal Roommate</h1>
+    <div class="notification is-danger">{{ message }}</div>
+    <form method="POST" action="/login">
+      <div class="field">
+        <div class="control">
+          <input
+            class="input is-large"
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            autofocus=""
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <input
+            class="input is-large"
+            type="password"
+            name="password"
+            placeholder="Your Password"
+          />
+        </div>
+      </div>
+      <button>Login</button>
+    </form>
+  </body>
+</html>
