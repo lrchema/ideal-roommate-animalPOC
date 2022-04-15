@@ -1,7 +1,6 @@
 import os
 from flask import Blueprint, abort, redirect, request, url_for
-from flask import Flask, render_template
-from numpy import var
+from flask import render_template
 from . import dbconn
 from . import animal
 

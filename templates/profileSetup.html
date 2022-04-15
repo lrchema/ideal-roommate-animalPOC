@@ -5,6 +5,7 @@
     <title>Ideal Roommate</title>
   </head>
   <body>
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
     <h1>Welcome, {{ currani.name }}</h1>
     <h2>Please setup your profile before proceeding</h2>
     <form method="POST" enctype=multipart/form-data action="/profileSetup">

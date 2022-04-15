@@ -1,13 +1,16 @@
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+import json
+from flask import Blueprint, redirect, render_template, request, url_for
 from . import dbconn
 from . import animal
-from flask_login import login_user
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login')
 def login():
-    return render_template('login.html')
+    messages = request.args.get('messages')
+    if not messages:
+        messages = ""
+    return render_template('login.html', messages = messages)
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -32,11 +35,14 @@ def login_post():
         else:
             return redirect(url_for('main.profile'))
     else:
-        return redirect(url_for('auth.login'), message = "Incorrect username or password, please try again")
+        return redirect(url_for('auth.login', messages = "Incorrect username or password, please try again"))
 
 @auth.route('/signup')
 def signup():
-    return render_template('signup.html')
+    messages = request.args.get('messages')
+    if not messages:
+        messages = ""
+    return render_template('signup.html', messages = messages)
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
@@ -56,9 +62,10 @@ def signup_post():
         cur.execute(query, vals)
         conn.commit()
     else:
-        return redirect(url_for('auth.signup'), messages = "Email address already exists. Click here to login")
+        return redirect(url_for('auth.signup', messages = "Email address already exists. Click here to login"))
     return redirect(url_for('auth.login'))
 
 @auth.route('/logout')
 def logout():
-    return 'Logout'
+    animal.currAnimal = None
+    return redirect(url_for('main.index'))

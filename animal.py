@@ -1,13 +1,6 @@
-currAnimal = None
+currAnimal = None #This is the global variable that stores current logged in user
 
 class Animal():
-    # def __init__(self, email, name, password):
-    #     self.email = email
-    #     self.name = name
-    #     self.password = password
-    #     self.species = None
-    #     self.image = None
-    #     self.isSetup = False
 
     def __init__(self, email, name, password, species=None, image=None, isSetup=False):
         self.email = email

@@ -1,3 +1,5 @@
+drop database if exists testdb;
+create database testdb;
 use testdb;
 
 drop table if exists animals;
