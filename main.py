@@ -1,8 +1,8 @@
 import os
 from flask import Blueprint, abort, redirect, request, url_for
 from flask import render_template
-from . import dbconn
-from . import animal
+from __init__ import dbconn
+from __init__ import animal
 
 main = Blueprint('main', __name__)
 
