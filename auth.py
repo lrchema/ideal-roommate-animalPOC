@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
 from __init__ import dbconn
-from __init__ import animal
+from animal import animal
 
 auth = Blueprint('auth', __name__)
 
