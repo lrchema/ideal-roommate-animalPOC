@@ -14,6 +14,8 @@ def create_app():
 
     return app
 
+# app = create_app()
+
 def dbconn():
     hostname = 'localhost'
     username = 'root'
