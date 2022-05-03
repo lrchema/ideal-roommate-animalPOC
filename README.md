@@ -1,4 +1,4 @@
-# ideal-roommate
+# ideal-roommate-animalPOC
 
 ## Instructions for usage
 
