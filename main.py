@@ -29,7 +29,7 @@ def profileSetup():
 @main.route("/profileSetup", methods=['POST'])
 def profileSetup_post():
     print("here")
-    UPLOAD_FOLDER = 'static/'
+    UPLOAD_FOLDER = os.path.abspath('static/')
     print(request.files['file'])
     file = request.files['file']
     species = request.form.get('species')
