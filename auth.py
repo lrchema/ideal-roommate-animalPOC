@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, request, url_for
-from . import dbconn
-from . import animal
+from __init__ import dbconn
+from animal import currAnimal, Animal
 
 auth = Blueprint('auth', __name__)
 
@@ -25,11 +25,11 @@ def login_post():
     issetup = False
     if a[6] != 0:
         issetup = True
-    ani = animal.Animal(a[2], a[1], a[3], a[4], a[5], issetup)
+    ani = Animal(a[2], a[1], a[3], a[4], a[5], issetup)
     if ani.password == password:
-        animal.currAnimal = ani
-        print(animal.currAnimal)
-        if not animal.currAnimal.isSetup:
+        currAnimal = ani
+        print(currAnimal)
+        if not currAnimal.isSetup:
             return redirect(url_for('main.profileSetup'))
         else:
             return redirect(url_for('main.profile'))
@@ -54,7 +54,7 @@ def signup_post():
     cur = conn.cursor()
     cur.execute("select * from animals where email=%s", (email,))
     if len(cur.fetchall())==0:
-        a = animal.Animal(email, name, password)
+        a = Animal(email, name, password)
         query, vals = a.insert()
         conn.reconnect()
         cur = conn.cursor()
@@ -66,5 +66,5 @@ def signup_post():
 
 @auth.route('/logout')
 def logout():
-    animal.currAnimal = None
+    currAnimal = None
     return redirect(url_for('main.index'))
