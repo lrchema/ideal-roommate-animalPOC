@@ -1,6 +1,6 @@
-drop database if exists testdb;
-create database testdb;
-use testdb;
+drop database if exists heroku_b12dbd41fac3d4b;
+create database heroku_b12dbd41fac3d4b;
+use heroku_b12dbd41fac3d4b;
 
 drop table if exists animals;
 

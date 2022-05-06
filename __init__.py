@@ -17,8 +17,8 @@ def create_app():
 # app = create_app()
 
 def dbconn():
-    hostname = 'localhost'
-    username = 'root'
-    password = 'password'
-    database = 'testdb'
+    hostname = 'us-cdbr-east-05.cleardb.net'
+    username = 'be530286ab3453'
+    password = '018039cb'
+    database = 'heroku_b12dbd41fac3d4b'
     return mysql.connector.connect(host=hostname, user=username, passwd=password, db=database)
