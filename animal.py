@@ -1,5 +1,7 @@
-currAnimal = None #This is the global variable that stores current logged in user
+from flask import g
 
+currAnimal = None #This is the global variable that stores current logged in user
+g.currAnimal = currAnimal
 class Animal():
 
     def __init__(self, email, name, password, species=None, image=None, isSetup=False):
