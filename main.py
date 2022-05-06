@@ -28,9 +28,8 @@ def profileSetup():
 
 @main.route("/profileSetup", methods=['POST'])
 def profileSetup_post():
-    print("here")
     UPLOAD_FOLDER = os.path.abspath('static/')
-    print(request.files['file'])
+    print(currAnimal)
     file = request.files['file']
     species = request.form.get('species')
     filename = file.filename
