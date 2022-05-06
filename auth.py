@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request, url_for, g
+from flask import Blueprint, redirect, render_template, request, url_for, current_app
 from __init__ import dbconn
 from animal import Animal
 
@@ -27,9 +27,9 @@ def login_post():
         issetup = True
     ani = Animal(a[2], a[1], a[3], a[4], a[5], issetup)
     if ani.password == password:
-        g.currAnimal = ani
-        print(g.currAnimal)
-        if not g.currAnimal.isSetup:
+        current_app.config['currAnimal'] = ani
+        print(current_app.config['currAnimal'])
+        if not current_app.config['currAnimal'].isSetup:
             return redirect(url_for('main.profileSetup'))
         else:
             return redirect(url_for('main.profile'))
@@ -66,5 +66,5 @@ def signup_post():
 
 @auth.route('/logout')
 def logout():
-    g.currAnimal = None
+    current_app.config['currAnimal'] = None
     return redirect(url_for('main.index'))
