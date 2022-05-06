@@ -29,8 +29,8 @@ def login_post():
     ani = Animal(a[2], a[1], a[3], a[4], a[5], issetup)
     if ani.password == password:
         animal.currAnimal = ani
-        print(currAnimal)
-        if not currAnimal.isSetup:
+        print(animal.currAnimal)
+        if not animal.currAnimal.isSetup:
             return redirect(url_for('main.profileSetup'))
         else:
             return redirect(url_for('main.profile'))

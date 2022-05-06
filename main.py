@@ -3,6 +3,7 @@ from flask import Blueprint, abort, redirect, request, url_for
 from flask import render_template
 from __init__ import dbconn
 from animal import currAnimal, Animal
+import animal
 
 main = Blueprint('main', __name__)
 
@@ -12,33 +13,33 @@ def index():
 
 @main.route('/profile')
 def profile():
-    print(currAnimal)
-    if not currAnimal:
+    print(animal.currAnimal)
+    if not animal.currAnimal:
         return redirect(url_for('auth.login'))
 
     conn = dbconn()
     conn.reconnect()
     cur = conn.cursor()
-    cur.execute("select * from animals where email=%s", (currAnimal.email,))
+    cur.execute("select * from animals where email=%s", (animal.currAnimal.email,))
     return redirect(url_for('main.route_animal', animalid=cur.fetchone()[0]))
 
 @main.route("/profileSetup")
 def profileSetup():
-    return render_template('profileSetup.html', currani = currAnimal)
+    return render_template('profileSetup.html', currani = animal.currAnimal)
 
 @main.route("/profileSetup", methods=['POST'])
 def profileSetup_post():
     UPLOAD_FOLDER = os.path.abspath('static/')
-    print(currAnimal)
+    print(animal.currAnimal)
     file = request.files['file']
     species = request.form.get('species')
     filename = file.filename
     file.save(os.path.join(UPLOAD_FOLDER, filename))
 
-    currAnimal.species = species
-    currAnimal.image = filename
+    animal.currAnimal.species = species
+    animal.currAnimal.image = filename
 
-    query, vals = currAnimal.profileSetup()
+    query, vals = animal.currAnimal.profileSetup()
 
     conn = dbconn()
     cur = conn.cursor()
@@ -49,7 +50,7 @@ def profileSetup_post():
 
 @main.route('/<int:animalid>')
 def route_animal(animalid):
-    if not currAnimal:
+    if not animal.currAnimal:
         return redirect(url_for('auth.login'))
         
     ani = list(get_animal(animalid))
